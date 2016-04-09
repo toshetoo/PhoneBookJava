@@ -117,7 +117,7 @@ public class UsersRepository implements Repository<User> {
 			}
 		}
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath)));
 			for(int i=0;i<users.size();i++){
 			
 				pw.println(users.get(i).getId());
@@ -140,7 +140,7 @@ public class UsersRepository implements Repository<User> {
 		List<User> users = getAll();
 	
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath)));
 			for(int i=0;i<users.size();i++){
 				if(u.getId() != users.get(i).getId()){
 					

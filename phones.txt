@@ -1,6 +1,6 @@
 1
 1
-PhoneForContact1
+TestPhone
 2
 3
 PhoneForContact3

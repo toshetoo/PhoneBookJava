@@ -145,7 +145,7 @@ public class ContactsRepository implements Repository<Contact> {
 			}
 		}
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath)));
 			for(int i=0;i<contacts.size();i++){
 			
 				pw.println(contacts.get(i).getId());
@@ -167,7 +167,7 @@ public class ContactsRepository implements Repository<Contact> {
 		List<Contact> contacts = getAll();
 		
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath)));
 			for(int i=0;i<contacts.size();i++){
 				if(c.getId() != contacts.get(i).getId()){
 					

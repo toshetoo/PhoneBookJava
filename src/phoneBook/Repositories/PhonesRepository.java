@@ -140,7 +140,7 @@ public class PhonesRepository implements Repository<Phone>{
 			}
 		}
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath)));
 			for(int i=0;i<phones.size();i++){
 			
 				pw.println(phones.get(i).getId());
@@ -163,7 +163,7 @@ public class PhonesRepository implements Repository<Phone>{
 		List<Phone> phones = getAll();
 		
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath)));
 			for(int i=0;i<phones.size();i++){
 				if(p.getId() != phones.get(i).getId()){
 					
