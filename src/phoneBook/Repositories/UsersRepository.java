@@ -10,7 +10,7 @@ import java.util.List;
 
 import phoneBook.Entities.User;
 
-public class UsersRepository extends BaseRepository<User> {
+public class UsersRepository implements Repository<User> {
 
 	String filePath = "users.txt";
 	
@@ -83,7 +83,6 @@ public class UsersRepository extends BaseRepository<User> {
 		return readUserFromFile(id);		
 	}
 	
-	@Override
 	public void Insert(User u){
 		u.setId(getNextID());
 		
@@ -101,7 +100,6 @@ public class UsersRepository extends BaseRepository<User> {
 		
 	}
 	
-	@Override
 	public void Update(User u){
 		List<User> users = getAll();
 		
@@ -130,7 +128,6 @@ public class UsersRepository extends BaseRepository<User> {
 			}			
 		}	
 	
-	@Override	
 	public void Delete(User u){
 		List<User> users = getAll();
 	
@@ -153,7 +150,6 @@ public class UsersRepository extends BaseRepository<User> {
 			}	
 	}
 	
-	@Override
 	public void Save(User item) {
 		if(readUserFromFile(item.getId())!=null)
 			Update(item);
