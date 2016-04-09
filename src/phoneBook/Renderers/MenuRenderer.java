@@ -10,17 +10,19 @@ import phoneBook.Repositories.UsersRepository;
 public class MenuRenderer {
 
 	public void renderMainMenu(){
-		clearConsole();
+		//clearConsole();
 		System.out.println("Select a category:");
 		System.out.println("1. Users");
 		System.out.println("2. Contacts");
 		System.out.println("3. Phones");
+		System.out.println("4. Exit");
 		String input = readFromConsole();
 		
 		switch(input){
 		case "1": renderUsersMenu(); break;
 		case "2": renderContactsMenu(); break;
 		case "3": renderPhonesMenu(); break;
+		case "4": System.exit(0);break;
 		default: 
 			System.out.println("Invalid selection! Try again!");
 			clearConsole();
@@ -32,15 +34,7 @@ public class MenuRenderer {
 	/*----Sub menus----*/
 	private void renderUsersMenu(){
 		clearConsole();
-		System.out.println("Users");
-		System.out.println("-----------");
-		System.out.println("Select a category:");
-		System.out.println("1. Insert");
-		System.out.println("2. Update");
-		System.out.println("3. Delete");
-		System.out.println("4. Print specific user");
-		System.out.println("5. Print all users");
-		System.out.println("6. Return to main menu");
+		renderMenusHeader("Users");
 		
 		String input = readFromConsole();
 		
@@ -50,7 +44,9 @@ public class MenuRenderer {
 		case "3": renderDeleteUserMenu(); break;
 		case "4": renderPrintSpecificUserMenu(); break;
 		case "5": renderPrintAllUsersMenu(); break;
-		case "6": renderMainMenu(); break;
+		case "6": 
+			clearConsole();
+			renderMainMenu(); break;
 		default: 
 			System.out.println("Invalid selection! Try again!");
 			sleep();
@@ -63,15 +59,7 @@ public class MenuRenderer {
 	
 	private void renderContactsMenu(){
 		clearConsole();
-		System.out.println("Contacts");
-		System.out.println("-----------");
-		System.out.println("Select a category:");
-		System.out.println("1. Insert");
-		System.out.println("2. Update");
-		System.out.println("3. Delete");
-		System.out.println("4. Print specific contact");
-		System.out.println("5. Print all contacts");
-		System.out.println("6. Return to main menu");
+		renderMenusHeader("Contacts");
 		
 		String input = readFromConsole();
 		
@@ -81,7 +69,9 @@ public class MenuRenderer {
 		case "3": renderDeleteContactMenu(); break;
 		case "4": renderPrintSpecificContactMenu(); break;
 		case "5": renderPrintAllContactsMenu(); break;
-		case "6": renderMainMenu(); break;
+		case "6": 
+			clearConsole();
+			renderMainMenu(); break;
 		default: 
 			System.out.println("Invalid selection! Try again!");
 			sleep();
@@ -94,15 +84,7 @@ public class MenuRenderer {
 	
 	private void renderPhonesMenu(){
 		clearConsole();
-		System.out.println("Phones");
-		System.out.println("-----------");
-		System.out.println("Select a category:");
-		System.out.println("1. Insert");
-		System.out.println("2. Update");
-		System.out.println("3. Delete");
-		System.out.println("4. Print specific phone");
-		System.out.println("5. Print all phones");
-		System.out.println("6. Return to main menu");
+		renderMenusHeader("Phones");
 		
 		String input = readFromConsole();
 		
@@ -112,7 +94,9 @@ public class MenuRenderer {
 		case "3": renderDeletePhoneMenu(); break;
 		case "4": renderPrintSpecificPhoneMenu(); break;
 		case "5": renderPrintAllPhonesMenu(); break;
-		case "6": renderMainMenu(); break;
+		case "6": 
+			clearConsole();
+			renderMainMenu(); break;
 		default: 
 			System.out.println("Invalid selection! Try again!");
 			sleep();
@@ -222,7 +206,19 @@ public class MenuRenderer {
 		}
 		return null;
 	}
-
+	
+	private void renderMenusHeader(String category) {
+		System.out.println(category);
+		System.out.println("-----------");
+		System.out.println("Select a category:");
+		System.out.println("1. Insert");
+		System.out.println("2. Update");
+		System.out.println("3. Delete");
+		System.out.println("4. Print specific " + category.toLowerCase());
+		System.out.println("5. Print all " + category.toLowerCase());
+		System.out.println("6. Return to main menu");
+	}
+	
 	private void sleep() {
 		try {
 			Thread.sleep(300);

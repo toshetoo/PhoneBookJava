@@ -1,8 +1,10 @@
 package phoneBook.Repositories;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -87,7 +89,7 @@ public class UsersRepository implements Repository<User> {
 		u.setId(getNextID());
 		
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			pw.println(u.getId());
 			pw.println(u.getName());
 			pw.println(u.getPassword());
@@ -95,6 +97,9 @@ public class UsersRepository implements Repository<User> {
 			pw.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Missing file");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -112,7 +117,7 @@ public class UsersRepository implements Repository<User> {
 			}
 		}
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			for(int i=0;i<users.size();i++){
 			
 				pw.println(users.get(i).getId());
@@ -125,6 +130,9 @@ public class UsersRepository implements Repository<User> {
 			} catch (FileNotFoundException e) {
 				System.out.println("Missing file");				
 				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}			
 		}	
 	
@@ -132,7 +140,7 @@ public class UsersRepository implements Repository<User> {
 		List<User> users = getAll();
 	
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			for(int i=0;i<users.size();i++){
 				if(u.getId() != users.get(i).getId()){
 					
@@ -146,6 +154,9 @@ public class UsersRepository implements Repository<User> {
 			pw.close();
 			} catch (FileNotFoundException e) {
 				System.out.println("Missing file");				
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 	}
@@ -165,7 +176,7 @@ public class UsersRepository implements Repository<User> {
 			String line;
 			
 			while((line=br.readLine())!=null){
-				if(Integer.parseInt(line) == id){
+				
 					User u = new User();
 					u.setId(Integer.parseInt(line));
 					line=br.readLine();
@@ -175,6 +186,8 @@ public class UsersRepository implements Repository<User> {
 					line=br.readLine();
 					u.setUsername(line);
 					u.setContacts(new ContactsRepository().getByUserID(u.getId()));
+					
+				if(u.getId() == id){
 					br.close();
 					return u;
 				}

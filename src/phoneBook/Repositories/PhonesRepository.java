@@ -1,8 +1,10 @@
 package phoneBook.Repositories;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -112,13 +114,16 @@ public class PhonesRepository implements Repository<Phone>{
 		p.setId(getNextID());
 		
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			pw.println(p.getId());
 			pw.println(p.getContactId());
 			pw.println(p.getNumber());					
 			pw.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Missing file");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -135,7 +140,7 @@ public class PhonesRepository implements Repository<Phone>{
 			}
 		}
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			for(int i=0;i<phones.size();i++){
 			
 				pw.println(phones.get(i).getId());
@@ -147,6 +152,9 @@ public class PhonesRepository implements Repository<Phone>{
 			} catch (FileNotFoundException e) {
 				System.out.println("Missing file");				
 				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		
 	}
@@ -155,7 +163,7 @@ public class PhonesRepository implements Repository<Phone>{
 		List<Phone> phones = getAll();
 		
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			for(int i=0;i<phones.size();i++){
 				if(p.getId() != phones.get(i).getId()){
 					
@@ -167,6 +175,9 @@ public class PhonesRepository implements Repository<Phone>{
 			pw.close();
 			} catch (FileNotFoundException e) {
 				System.out.println("Missing file");				
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 		

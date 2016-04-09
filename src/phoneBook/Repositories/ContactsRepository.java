@@ -1,8 +1,10 @@
 package phoneBook.Repositories;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -117,13 +119,15 @@ public class ContactsRepository implements Repository<Contact> {
 			c.setId(getNextID());
 		
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			pw.println(c.getId());
 			pw.println(c.getUserId());
 			pw.println(c.getName());					
 			pw.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Missing file");
+			e.printStackTrace();
+		} catch (IOException e) {			
 			e.printStackTrace();
 		}
 		
@@ -141,7 +145,7 @@ public class ContactsRepository implements Repository<Contact> {
 			}
 		}
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			for(int i=0;i<contacts.size();i++){
 			
 				pw.println(contacts.get(i).getId());
@@ -153,6 +157,8 @@ public class ContactsRepository implements Repository<Contact> {
 			} catch (FileNotFoundException e) {
 				System.out.println("Missing file");				
 				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		
 	}
@@ -161,7 +167,7 @@ public class ContactsRepository implements Repository<Contact> {
 		List<Contact> contacts = getAll();
 		
 		try {
-			PrintWriter pw = new PrintWriter(filePath);
+			PrintWriter pw = new PrintWriter(new FileWriter(new File(filePath),true));
 			for(int i=0;i<contacts.size();i++){
 				if(c.getId() != contacts.get(i).getId()){
 					
@@ -173,6 +179,8 @@ public class ContactsRepository implements Repository<Contact> {
 			pw.close();
 			} catch (FileNotFoundException e) {
 				System.out.println("Missing file");				
+				e.printStackTrace();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}	
 		
