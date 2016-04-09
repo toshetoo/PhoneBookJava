@@ -1,26 +1,17 @@
 package phoneBook.Repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseRepository<T> {
-	private T t;
+import phoneBook.Entities.BaseEntity;
+
+public abstract class BaseRepository<T extends BaseEntity> {
+	//private T t;
 	
 	
-	public List<T> getAll(){
-		return new ArrayList<T>();
-	}
-	public T GetByID(int id){		
-		
-		return null;
-	}
-	public void Insert(T item){
-		
-	}
-	public void Update(T item){
-		
-	}
-	public void Delete(T item){
-	
-	}
+	protected abstract List<T> getAll();
+	protected abstract T getByID(int id);
+	protected abstract void Insert(T item);
+	protected abstract void Update(T item);
+	protected abstract void Delete(T item);
+	protected abstract void Save(T item);
 }

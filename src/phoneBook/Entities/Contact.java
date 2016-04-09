@@ -29,4 +29,7 @@ public class Contact extends BaseEntity{
 	public void setPhone(Phone e) {
 		this.phones.add(e);
 	}
+	public void setPhones(List<Phone> p) {
+		this.phones = p;
+	}
 }

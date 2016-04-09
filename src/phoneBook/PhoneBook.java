@@ -10,7 +10,7 @@ public class PhoneBook {
 				
 		UsersRepository userRepo = new UsersRepository();
 		List<User> users = userRepo.getAll();
-		User u = userRepo.GetByID(1);
+		User u = userRepo.getByID(1);
 		
 		System.out.println("-------");
 		System.out.println(u.getId());
